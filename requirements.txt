@@ -1,0 +1,28 @@
+# Fraym Claude Code Workflow - R Package Requirements
+
+# Core data manipulation
+tidyverse        # dplyr, ggplot2, tidyr, readr, etc.
+
+# Survey analysis
+srvyr           # Survey analysis with dplyr syntax
+survey          # Complex survey analysis (dependency of srvyr)
+
+# Geospatial analysis
+sf              # Simple features for vector data
+terra           # Raster data manipulation and analysis
+exactextractr   # Fast zonal statistics
+
+# Visualization
+scales          # Formatting scales for ggplot2
+patchwork       # Combining multiple plots
+ggspatial       # Spatial elements for ggplot2 (scale bars, north arrows)
+
+# File handling
+readxl          # Reading Excel files
+writexl         # Writing Excel files
+haven           # Reading SPSS, Stata, SAS files
+
+# Optional but useful
+janitor         # Data cleaning functions
+lubridate       # Date/time manipulation
+glue            # String interpolation
