@@ -21,7 +21,7 @@ This repository provides a standardized workflow for using Claude Code to automa
 
 # Clone this repository
 git clone <your-repo-url>
-cd fraym-claude-code-workflow-r
+cd fraym-claude-code-workflow
 
 # Run setup script to install R packages
 Rscript setup.R

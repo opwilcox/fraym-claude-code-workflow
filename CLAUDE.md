@@ -160,6 +160,44 @@ Additional Fraym Created Features:
 - Survey instrument languages: Arabic, Kurdish
 - Survey Representativeness: Nationally representative of the general population of Adults 18 - 70
 
+## Working Directory Standards
+
+### Default Work Folder
+
+**ALWAYS use the `work/` folder for all analysis outputs:**
+- All R scripts and R Markdown files
+- All generated reports (HTML, PDF, etc.)
+- All intermediate outputs and temporary files
+- All visualizations saved as standalone files
+
+The `work/` folder is version controlled and serves as the project's working directory for analysis outputs.
+
+**Folder Structure:**
+```
+fraym-claude-code-workflow/
+├── work/               # ALL analysis work goes here (DEFAULT)
+│   ├── *.R            # R scripts
+│   ├── *.Rmd          # R Markdown reports
+│   ├── *.html         # Rendered reports
+│   ├── *.pdf          # PDF outputs
+│   └── figures/       # Visualization outputs
+├── data/              # Source data (READ ONLY)
+├── utils/             # Utility functions (REFERENCE ONLY)
+└── CLAUDE.md          # This file
+```
+
+### File Organization
+
+**Reports and Scripts:**
+- Save all analysis files to `work/`
+- Use descriptive filenames with dates when relevant
+- Example: `work/tiktok_analysis_2025-01-16.Rmd`
+
+**Figures:**
+- Save standalone figures to `work/figures/`
+- Use consistent naming: `{analysis}_{figure_type}_{date}.png`
+- Example: `work/figures/tiktok_usage_by_state_2025-01-16.png`
+
 ## Data Structure
 
 ### Typical Data Package Contents
@@ -335,6 +373,10 @@ Colorblind-Friendly: `#2024a5` → `#f2f2f2` → `#d44244`
 - Sort by value (descending) unless natural order exists
 - Use horizontal bars for long category names
 - Include data labels for key values
+- **NO error bars** unless explicitly requested
+- **Narrow bars with gaps** between them (width = 0.7 or less)
+- **NO vertical text** - use subtitle instead of rotated y-axis titles
+- **NO coord_flip() y-axis titles** - include context in subtitle
 
 **Line Charts:**
 - Show trends over time
