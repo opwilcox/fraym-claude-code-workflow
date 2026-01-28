@@ -1,15 +1,17 @@
-# Fraym Claude Code Workflow (R Version)
+# Fraym Claude Code Starter Pack
 
-A comprehensive workflow system for Fraym data analysts to use Claude Code with R for automating data analysis tasks.
+A comprehensive workflow for Fraym data analysts to use Claude Code with R for automating data analysis tasks.
 
 ## Overview
 
 This repository provides a standardized workflow for using Claude Code to automate common data analysis tasks at Fraym using R. The system includes:
 
-- **claude.md**: Context file that teaches Claude about Fraym's data structure and R analysis patterns
-- **Utility scripts**: Reusable R functions for common operations
-- **Example workflows**: Documented patterns for common tasks (coming soon)
-- **Structured workspace**: Organized folders for efficient collaboration
+- **CLAUDE.md**: Context file that teaches Claude about Fraym's data structure and R analysis patterns
+- **Utility scripts (utils)**: Reusable R functions for common operations
+- **Example workflows (examples)**: Documented patterns for common tasks (coming soon)
+- **Structured workspace (work*)*: Organized folders for efficient collaboration
+- **Data Package (data)**: A folder for adding a structured Fraym data packaged
+
 
 ## Quick Start
 
@@ -29,6 +31,15 @@ Rscript setup.R
 
 ### 2. Add Your Data Package
 
+You can provide claude with any structured data package, such as a data license from product a customer-specific package. 
+The package should include at a minimum:
+    1. **Codebook** Lists indicators with human-readable meaning (e.g. indicator category, definition, short name) and meta-data (RMSE, collection dates etc). The Master Indicator Catalog is a good start but we recommend trimming unnecessary columns.
+    2. **Zonal Statistics** Aggregated data at key administrative levels. Include ADM0 for referencing national statistics. We recommend including both in .csv and .gpkg formats.
+    3. **Training Data** In-processed, weighted Fraym survey data. If the training data includes many columns for raw indicators it may be helpful to trim down to only those indicators included in the codebook. This way the codebook can server as the reference for both the zonal statistics and the training data.
+    4. **Rasters** Fully post-processed rasters (e.g. masked, normalized etc). .tif file names should match the indicators in the codebook exactly. 
+
+You can add the package with the following:
+
 ```bash
 # Copy data package
 cp -r /path/to/your/data-package data/
@@ -37,11 +48,15 @@ cp -r /path/to/your/data-package data/
 ln -s /path/to/your/data-package data/data-package
 ```
 
-- Add the Master Indicator Catalog (https://docs.google.com/spreadsheets/d/1JQOLlbTORSf0O2ydmblfw9lw9LY2ZYZupVoLzT7go_E/edit?gid=981375855#gid=981375855)for your data license. This is crucial for providing claude with context for the meaning of indicators.
+### 3. Complete Project section of CLAUDE.md
 
-- If you plan to create choropleth maps, you will need to download the place-group ADM boundaries used in the data license from Fraymr since Product currently only stores zonal stats in CSV format.
+In this section you can add details about your project for Claude to reference. Most importantly, you must complete Data Package Structure section. Use relative paths (from the work directory). See the commented example.
 
-### 3. Start Claude Code
+### 4. Start Claude Code
+
+There are two ways to run Claude Code.
+
+For the CLI run:
 
 ```bash
 # Navigate to work directory
@@ -51,18 +66,17 @@ cd work
 claude
 ```
 
-Or if you are using the VS code plugin simply open VS code in the cloned repo and open the chat box in the top right (Claud logo)
+Or if you are using the VS code plugin, simply click the Claude logo in the top right and begin the chat.
 
 ### 4. Begin Your Analysis
 
 ```r
 # In Claude Code session:
+"Describe the data package"
+"Do we have any indicator related to..."
 
-# Load utility functions
-source("../utils/source_all.R")
-
-# Then describe what you want to analyze:
-"Calculate weighted national literacy rates from the survey data in ../data/"
+# For analysis with Fraym functions:
+"Calculate weighted national literacy rates from the survey data in"
 "Create a choropleth map of poverty rates by region"
 ```
 
@@ -92,116 +106,11 @@ fraym-claude-code-workflow-r/
 └── work/                      # Working directory
     └── .gitkeep
 ```
-
-
-## Working with Claude Code
-
-### Typical Session
-
-```bash
-cd work
-claude
-```
-
-In Claude Code:
-```
-# Load utilities
-> "Source the utility functions from ../utils/source_all.R"
-
-# Describe dataset
-> "Read and describe the survey data in ../data/education-survey.csv"
-
-# Analysis
-> "Calculate weighted literacy rates by region and create a map"
-
-# Visualization
-> "Create a bar chart comparing urban vs rural literacy rates"
-```
-
-
-### Best Practices
-
-1. **Always use sampling weights**: All survey statistics functions require weight column
-2. **Source utilities first**: Run `source("../utils/source_all.R")` at start of session
-3. **Use relative paths**: Reference data as `../data/` from work directory
-4. **Review outputs**: Check that maps and charts follow Fraym standards
-5. **Save work**: Save scripts and outputs to organized subdirectories in work/
-
-## Requirements
-
-**Software:**
-- R 4.0+ 
-- Claude Code CLI
-- RStudio (optional, recommended)
-
-**R Packages:**
-- tidyverse (dplyr, ggplot2, tidyr, readr)
-- srvyr (survey analysis)
-- sf (vector spatial data)
-- terra (raster data)
-- scales, patchwork (visualization)
-- readxl, writexl (Excel files)
-
-Install all packages: `Rscript setup.R`
-
-## Configuration
-
-```
-
-### Customizing claude.md
-
-Edit `claude.md` to add:
-- Project-specific data conventions
-- Custom analysis workflows
-- Client requirements
-- Additional data dictionaries
-
-## Troubleshooting
-
-**Issue: Package installation fails**
-```r
-# Try installing individually
-install.packages("tidyverse")
-install.packages("srvyr")
-install.packages("sf")
-install.packages("terra")
-```
-
-**Issue: Cannot find utility functions**
-```r
-# Make sure you're in work/ directory
-getwd()  # Should end in .../work
-
-# Source utilities
-source("../utils/source_all.R")
-```
-
-**Issue: Weights not being applied**
-```r
-# All survey functions require weight_col parameter
-national_weighted_stats(df, "indicator", weight_col = "weight")
-```
-
 ## Contributing
-
-See CONTRIBUTING.md for guidelines on:
-- Adding new utility functions
-- Improving claude.md
-- Creating example workflows
-- Team collaboration
-
-## Support
-
-- **Documentation**: See GETTING_STARTED.md and QUICK_REFERENCE.md
-- **Function help**: `?function_name` or read function docstrings
-- **Examples**: Check `examples/` directory
+This repository is meant to serve as a starter pack for analysis. If you believe we should make 
+an adjustment for all projects, submit a Pull Request and Analytics leadership (Marissa or Orion) will review.  
 
 ## License
 
-Internal Fraym use. Customize as needed for your organization.
+Internal Fraym use. Customize as needed for your project.
 
----
-
-**Ready to start?** → See GETTING_STARTED.md
-
-**Need quick reference?** → See QUICK_REFERENCE.md
