@@ -33,9 +33,17 @@ Rscript setup.R
 
 You can provide claude with any structured data package, such as a data license from product a customer-specific package. 
 The package should include at a minimum:
-    1. **Codebook** Lists indicators with human-readable meaning (e.g. indicator category, definition, short name) and meta-data (RMSE, collection dates etc). The Master Indicator Catalog is a good start but we recommend trimming unnecessary columns.
-    2. **Zonal Statistics** Aggregated data at key administrative levels. Include ADM0 for referencing national statistics. We recommend including both in .csv and .gpkg formats.
-    3. **Training Data** In-processed, weighted Fraym survey data. If the training data includes many columns for raw indicators it may be helpful to trim down to only those indicators included in the codebook. This way the codebook can server as the reference for both the zonal statistics and the training data.
+
+    1. **Codebook** Lists indicators with human-readable meaning (e.g. indicator category, definition, short name) and meta-data (RMSE, collection dates etc). 
+    The Master Indicator Catalog is a good start but we recommend trimming unnecessary columns.
+    
+    2. **Zonal Statistics** Aggregated data at key administrative levels. Include ADM0 for referencing national statistics. 
+    We recommend including both in .csv and .gpkg formats.
+    
+    3. **Training Data** In-processed, weighted Fraym survey data. 
+    If the training data includes many columns for raw indicators it may be helpful to trim down to only those indicators included in the codebook. 
+    This way the codebook can server as the reference for both the zonal statistics and the training data.
+    
     4. **Rasters** Fully post-processed rasters (e.g. masked, normalized etc). .tif file names should match the indicators in the codebook exactly. 
 
 You can add the package with the following:
