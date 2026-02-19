@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(Rscript:*)",
+      "Bash(quarto render:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(echo:*)",
+      "Bash(cmd.exe /c \"dir /a C:\\\\Users\\\\orion\\\\ | findstr /i renviron\")",
+      "Bash(cmd.exe /c \"dir /a \"\"C:\\\\Users\\\\orion\"\" | findstr /i renviron\")",
+      "Bash(powershell -Command:*)",
+      "Bash(powershell -File -:*)",
+      "Bash(\"C:/Program Files/R/R-4.4.2/bin/Rscript.exe\" -e \"library\\(terra\\); library\\(sf\\); cat\\(''ok\\\\n''\\)\")"
+    ]
+  }
+}

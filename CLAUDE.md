@@ -5,124 +5,71 @@ This file provides Claude Code with essential context about Fraym's data structu
 ## Project
 
 <!-- ============================================================================
-     ANALYSTS: Fill in this section at the start of each new project
+     ANALYSTS: Update this section at the start of each new project. The current info is illustrative.
 
      Most important: Update "Data Package Location" to match your data folder!
      ============================================================================ -->
 
 ### Current Project Information
 
-**Project Name:** [Add project name]
+**Project Name:** American Views of Foreign Assistance 
 
-**Client:** [Add client name]
+**Client:** Gates Foundation
 
-**Data Package Location:** `../data/[package_name]`
+**Data Package Location:** `../data`
 *Update this path to match your data package folder name*
 
-**Geographic Focus:** [Country/region and admin levels]
+**Geographic Focus:** United States [national, state, and congressional districts]
 
-**Key Indicators:** [List primary indicators of interest]
+**Key Indicators:** Proportion of adults who think U.S. foreign aid spending should increase or stay the same
 
-**Time Period:** [Survey collection dates and data reference period]
+**Time Period:** September - December 2025 (ongoing tracker)
 
 **Survey Info:**
-- Sample size: [e.g., 4,070]
-- Survey mode: [e.g., CATI]
-- Data collection period: [e.g., Aug 18 - Oct 5, 2025]
+September 2025
 
-**Special Requirements:**
-- [Add any client-specific requirements]
-- [Add any special methodological considerations]
-- [Add any visualization preferences]
+- Sample size: 17,000
+- Survey mode: Online
+- Data collection period: September 2025
+
+October - December 2025
+
+- Sample size: 17,000
+- Survey mode: Online
+- Data collection period: October - December 2025
+
 
 ### Data Package Structure
 
 **Document your specific data package structure below:**
 
-**Indicator Catalog:**
-- Location: `[path to codebook/catalog file]`
-- Format: [CSV/Excel]
-- Key columns: [list important column names]
+**Codebook:**
+- Location: `/data/usa_data/codebook.csv`
+- Format: .csv
+- Key columns: Contains list of indicators and key metadata
 
 **Training Data:**
-- Location: `[path to weighted survey data]`
-- Weight column name: `[e.g., pop_wgt, weight, sample_weight]`
-- Key indicator columns: [list main indicators]
+- Training data exist for each wave and are stored in the wave folder (e.g. "data_package_09_2025")
+- Location: `/data/usa_data/[wave]/training_data/`
+- Weight column name: pop_wgt_unclustered (use as weight for survey analysis), age_group, gender, race, income, education (use as grouping variables for crosstabs)
+- use lower_case dummy columns near the end of the training dataset for survey analysis. These column names will match the indicators in the codebook.
 
 **Zonal Statistics:**
-- Location: `[path to zonal stats folder]`
-- Admin levels available: [e.g., ADM0, ADM1, ADM2]
-- File naming pattern: [e.g., adm1_zonal_stats.csv]
+- Location: `/data/usa_data/[wave]/zonal_statistics/`
+- Available in both CSV and Geopackage format
+- Use CSV for data lookup, tabular analysis
+- Use Geopackage for maps
 
 **Spatial Boundaries:**
-- Location: `[path to boundary files]`
-- Format: [GPKG/SHP]
-- Join key: `[column name for joining, e.g., "id"]`
+- Location: `/data/usa_data/[wave]/boundaries/`
+- Format: Geopackage
 
 **Rasters:**
-- Location: `[path to raster folder]`
-- Subfolder to use: [e.g., masked/, raw_tifs/]
-- File naming pattern: [e.g., indicator_id matches catalog]
+- Location: `/data/usa_data/[wave]/rasters/`
+- Format: Geotiff
+- File naming pattern: usa-[INDICATOR ID]-uuid (e.g. usa-aid_awr_pos-e1af8ca45a00462ba8ff2391180d1fa7)
+- INDICATOR ID (middle portion) can be matched to the IDs in the codebook
 
-### Known Data Issues / Project Notes
-
-- [Document any data quality issues discovered]
-- [Note any indicator-specific quirks]
-- [Record client feedback and preferences]
-- [Track analysis decisions and rationale]
-
-<!-- ============================================================================
-     EXAMPLE - Delete this after filling in your project info:
-
-     **Project Name:** Syria Social Media Analysis
-     **Client:** ACME Corporation
-     **Data Package Location:** `../data/syr_sagittarius_2025`
-     **Geographic Focus:** Syria, ADM1 (14 governorates) and ADM2
-     **Key Indicators:** tiktok_usage, instagram_usage, facebook_usage, twitter_usage
-     **Time Period:** Survey fielded Aug 18 - Oct 5, 2025
-     **Survey Info:**
-       - Sample size: 4,070
-       - Survey mode: CATI
-       - Data collection period: Aug 18 - Oct 5, 2025
-     **Special Requirements:**
-       - Client wants focus on urban vs rural differences
-       - Use colorblind-friendly palettes for all maps
-       - Include confidence intervals for key findings
-
-     ### Data Package Structure
-
-     **Indicator Catalog:**
-     - Location: `../data/syr_sagittarius_2025/syr_sagittarius_2025_indicator_catalog.csv`
-     - Format: CSV
-     - Key columns: indicator_id, indicator_name, indicator_description, category, national_proportion
-
-     **Training Data:**
-     - Location: `../data/syr_sagittarius_2025/labeled_training_data/syr_sagittarius_2025_weighted.csv`
-     - Weight column name: `pop_wgt`
-     - Key indicator columns: tiktok_usage, instagram_usage, facebook_usage, twitter_usage,
-       urban_rural, age_group, gender, education_level
-
-     **Zonal Statistics:**
-     - Location: `../data/syr_sagittarius_2025/zonal_statistics/`
-     - Admin levels available: ADM0 (national), ADM1 (14 governorates), ADM2 (districts)
-     - File naming pattern: `syr_adm0_zonal_stats.csv`, `syr_adm1_zonal_stats.csv`, `syr_adm2_zonal_stats.csv`
-
-     **Spatial Boundaries:**
-     - Location: `../data/syr_sagittarius_2025/zonal_statistics/syr_admin_boundaries.gpkg`
-     - Format: GPKG with layers for ADM1 and ADM2
-     - Join key: `id` (matches zonal stats files)
-
-     **Rasters:**
-     - Location: `../data/syr_sagittarius_2025/final_rasters/`
-     - Subfolder to use: `masked/` (population-masked)
-     - File naming pattern: `syr_{indicator_id}.tif` (e.g., syr_tiktok_usage.tif)
-
-     **Known Data Issues / Project Notes:**
-       - TikTok usage higher in younger demographics (expected)
-       - Rural sample slightly smaller (n=800), flag small sample sizes
-       - Client prefers horizontal bar charts for readability
-       - Some ADM2 districts have n<30, use ADM1 for those areas
-     ============================================================================ -->
 
 <!-- ============================================================================
      END PROJECT SECTION
@@ -216,7 +163,6 @@ Fraym data packages typically contain these asset types:
 
 ### Data Discovery Protocol
 
-**Before starting:** Fill in the **Data Package Structure** section in the Project area above. This ensures Claude knows exactly where to find your files.
 
 **Step 1: Verify Package Location**
 ```r
@@ -273,7 +219,7 @@ raster <- rast("path_from_project_section")
 
 **For high-level questions**, start with these assets:
 1. Read project info from this file (survey dates, sample size, etc.)
-2. Parse Master Indicator Catalog (available indicators, national stats)
+2. Parse codebook (available indicators, national stats)
 3. Read zonal statistics (pre-calculated subnational summaries)
 4. Review questionnaire if needed (for question-specific context)
 
@@ -374,6 +320,143 @@ Skip loading if you're:
 
 See [docs/UTILITY_FUNCTIONS.md](docs/UTILITY_FUNCTIONS.md) for detailed documentation and examples.
 
+## fraymr API (Spatial Data)
+
+The `fraymr` package provides direct access to the Fraym API for downloading spatial boundaries, WorldPop rasters, and survey data. Wrapper functions live in `utils/spatial_skills.R` and are loaded automatically via `source_all.R`.
+
+### Authentication
+
+Credentials must be in `~/.Renviron` (at `C:\Users\<username>\.Renviron` on Windows):
+```
+INFRAYM_USER=your_email@fraym.io
+INFRAYM_PASSWORD=your_password
+```
+
+Call once per session before any API function:
+```r
+library(fraymr)
+infraym_login()
+```
+
+### Place Groups
+
+**Always check available place groups and note the `id` column before downloading.**
+
+```r
+# List all place groups for a country (always returns id column)
+list_place_groups("USA")
+
+# Filter by type
+list_place_groups("USA", place_type = "Administrative Division")
+list_place_groups("USA", admin_division_type = "State")
+list_place_groups("USA", admin_division_type = "Congressional District")
+list_place_groups("USA", admin_division_type = "County")
+
+# Download by id (from list_place_groups()$id)
+states_sf <- download_place_group(id = 123)
+
+# Download default boundary for a type (no id needed)
+usa_boundary  <- download_default_place_group("USA", "Country")
+states_sf     <- download_default_place_group("USA", "Administrative Division",
+                                               admin_division_type = "State")
+counties_sf   <- download_default_place_group("USA", "Administrative Division",
+                                               admin_division_type = "County")
+
+# National boundary only
+usa_sf <- download_country("USA")
+```
+### WorldPop Population Rasters
+
+Returns a `terra` SpatRaster. Age ranges are defined by WorldPop 5-year bands (e.g. 0, 5, 10, ... 80).
+
+```r
+# Total population, 2020
+pop <- download_worldpop("USA", year = 2020)
+
+# Women of reproductive age 15-49
+women_1549 <- download_worldpop("USA", year = 2020,
+                                 age_lower = 15, age_upper = 49,
+                                 gender = "f")
+
+# All males 15+, clipped to country boundary
+men_15plus <- download_worldpop("USA", year = 2020,
+                                 age_lower = 15,
+                                 gender = "m",
+                                 mask_to_country = TRUE)
+
+# gender options: "m" | "f" | NULL (total)
+```
+
+### Surveys
+
+```r
+# List available surveys (returns id for download)
+list_surveys("USA", start_year = 2020)
+list_surveys("USA", start_year = 2018, raw_or_processed = "raw")
+
+# Get download URL for a specific survey
+url <- get_survey_url(survey_id = 42)
+```
+
+### Zonal Statistics (Raster → Polygon Aggregation)
+
+```r
+# Sum population raster within state polygons
+state_pop <- calc_zonal_stats(
+  rast        = pop_raster,
+  zones       = states_sf,
+  fun         = "sum",
+  output_file = "work/state_population.csv"
+)
+
+# Population-weighted mean of indicator within counties
+county_stats <- calc_zonal_stats(
+  rast        = indicator_raster,
+  zones       = counties_sf,
+  weight      = pop_raster,
+  fun         = "mean",
+  output_file = "work/county_stats.csv"
+)
+```
+
+### Typical Spatial Workflow
+
+**R requirements**
+1. Always write multi-line scripts to `.R` files and run with `Rscript script.R` — multiline `Rscript -e` strings crash on Windows
+
+```r
+# Correct load order
+library(terra)
+library(sf)
+library(fraymr)
+library(tidyverse)
+source("../utils/spatial_skills.R")
+
+infraym_login()
+
+# Find and download boundaries
+groups    <- list_place_groups("USA", admin_division_type = "State")
+states_sf <- download_place_group(id = groups$id[groups$isDefault])
+
+# Download WorldPop raster
+pop <- download_worldpop("USA", year = 2020)
+
+# Load indicator and run population-weighted zonal stats
+indicator <- terra::rast("path/to/indicator.tif")
+pop_rs    <- terra::resample(pop, indicator, method = "bilinear")
+
+result <- weighted_zonal_stats(
+  rast        = indicator,
+  zones       = states_sf,
+  weight      = pop_rs,
+  fun         = "weighted_mean",
+  output_file = "work/zonal_stats/my_indicator_states",
+  csv         = TRUE
+)
+```
+
+See [utils/spatial_skills.R](utils/spatial_skills.R) for full function documentation.
+
 ## Claude Code Workflow
 
 ### Multi-Step Analysis Pattern
@@ -383,6 +466,26 @@ When conducting multi-step analysis:
 2. **Validate data** before processing
 3. **Save intermediate outputs** to work/
 4. **Generate final report/visualization**
+
+### R Execution Standard
+
+**Always write R code to `.R` files and run with `Rscript script.R`.**
+
+Never use multiline `Rscript -e "..."` strings. They crash on Windows and are harder to debug and reproduce.
+
+```bash
+# CORRECT
+Rscript work/my_analysis_2026-02-19.R
+
+# WRONG — crashes on Windows
+Rscript -e "
+library(tidyverse)
+data <- read_csv(...)
+...
+"
+```
+
+Single-line `-e` calls are fine for quick checks (e.g., `Rscript -e "packageVersion('terra')"`).
 
 ### File Output Standards
 

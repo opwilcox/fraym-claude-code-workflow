@@ -21,7 +21,8 @@ cat("Loading Fraym utility functions...\n")
 utils_scripts <- c(
   "fraym_palettes.R",
   "survey_stats.R",
-  "visualization.R"
+  "visualization.R",
+  "spatial_skills.R"
 )
 
 for (script in utils_scripts) {
@@ -57,5 +58,16 @@ cat("  - create_bar_stacked()\n")
 cat("  - create_line_chart()\n")
 cat("  - create_scatter_plot()\n")
 cat("  - save_fraym_plot()\n")
+cat("\nfraymr API (requires infraym_login()):\n")
+cat("  - fraym_login()               # authenticate\n")
+cat("  - list_place_groups()         # list boundaries + IDs\n")
+cat("  - download_place_group()      # download boundary by id -> sf\n")
+cat("  - download_default_place_group() # download default boundary -> sf\n")
+cat("  - download_country()          # national boundary -> sf\n")
+cat("  - download_worldpop()         # population raster -> SpatRaster\n")
+cat("  - list_surveys()              # list available surveys\n")
+cat("  - get_survey_url()            # get survey download URL\n")
+cat("  - calc_zonal_stats()          # aggregate raster by polygon\n")
+cat("  - fraym_spatial_help()        # print this reference\n")
 cat("\nReady to analyze!\n")
 cat("Type list_fraym_palettes() to see available color schemes.\n")

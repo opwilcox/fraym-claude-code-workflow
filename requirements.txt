@@ -1,4 +1,7 @@
-# Fraym Claude Code Workflow - R Package Requirements
+# Fraym Claude Code Workflow - R Package 
+
+#Internal 
+fraymr #(already installed)
 
 # Core data manipulation
 tidyverse        # dplyr, ggplot2, tidyr, readr, etc.
