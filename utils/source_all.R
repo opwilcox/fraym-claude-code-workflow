@@ -1,13 +1,11 @@
 #!/usr/bin/env Rscript
 #' Source All Utility Scripts
-#' 
+#'
 #' Helper script to load all utility functions into your R session.
-#' 
+#'
 #' Usage:
-#'   source("utils/source_all.R")
-#' 
-#' Or from within utils/:
-#'   source("source_all.R")
+#'   source("../utils/source_all.R")  # from work/
+#'   source("utils/source_all.R")     # from repo root
 
 # Get the directory of this script
 script_dir <- getSrcDirectory(function() {})
@@ -20,9 +18,10 @@ cat("Loading Fraym utility functions...\n")
 
 utils_scripts <- c(
   "fraym_palettes.R",
-  "survey_stats.R",
+  "explore.R",
+  "survey.R",
   "visualization.R",
-  "spatial_skills.R"
+  "spatial.R"
 )
 
 for (script in utils_scripts) {
@@ -36,38 +35,33 @@ for (script in utils_scripts) {
 }
 
 cat("\nAvailable functions:\n")
-cat("\nColor Palettes:\n")
-cat("  - list_fraym_palettes() - Show all available palettes\n")
-cat("  - get_fraym_color() - Get specific color by name\n")
-cat("  - get_fraym_palette() - Get palette by name\n")
-cat("  - FRAYM_PRIMARY, FRAYM_NEUTRAL, FRAYM_EXTENDED (lists)\n")
-cat("  - FRAYM_SEQUENTIAL, FRAYM_DIVERGENT, FRAYM_CHARTS (lists)\n")
-cat("\nSurvey Statistics:\n")
-cat("  - national_weighted_stats()\n")
-cat("  - subnational_weighted_stats()\n")
-cat("  - weighted_crosstab()\n")
-cat("  - time_series_stats()\n")
-cat("  - calculate_design_effect()\n")
-cat("\nVisualization:\n")
-cat("  - create_choropleth()\n")
-cat("  - create_raster_map()\n")
-cat("  - create_bar_standard()\n")
-cat("  - create_bar_horizontal()\n")
-cat("  - create_bar_comparison()\n")
-cat("  - create_bar_stacked()\n")
-cat("  - create_line_chart()\n")
-cat("  - create_scatter_plot()\n")
-cat("  - save_fraym_plot()\n")
-cat("\nfraymr API (requires infraym_login()):\n")
-cat("  - fraym_login()               # authenticate\n")
-cat("  - list_place_groups()         # list boundaries + IDs\n")
-cat("  - download_place_group()      # download boundary by id -> sf\n")
-cat("  - download_default_place_group() # download default boundary -> sf\n")
-cat("  - download_country()          # national boundary -> sf\n")
-cat("  - download_worldpop()         # population raster -> SpatRaster\n")
-cat("  - list_surveys()              # list available surveys\n")
-cat("  - get_survey_url()            # get survey download URL\n")
-cat("  - calc_zonal_stats()          # aggregate raster by polygon\n")
-cat("  - fraym_spatial_help()        # print this reference\n")
+
+cat("\nColor Palettes (fraym_palettes.R):\n")
+cat("  FRAYM_PRIMARY, FRAYM_NEUTRAL, FRAYM_EXTENDED (lists)\n")
+cat("  FRAYM_SEQUENTIAL, FRAYM_DIVERGENT, FRAYM_CHARTS (lists)\n")
+cat("  list_fraym_palettes()  get_fraym_color()  get_fraym_palette()\n")
+
+cat("\nData Exploration (explore.R):\n")
+cat("  fraym_explore_package()   - list and summarize data package contents\n")
+cat("  fraym_read_codebook()     - read codebook, print indicators by category\n")
+cat("  fraym_summarize_training()- verify training data and weight column\n")
+cat("  fraym_check_paths()       - file.exists() check on all configured paths\n")
+
+cat("\nSurvey Statistics (survey.R):\n")
+cat("  national_weighted_stats()     subnational_weighted_stats()\n")
+cat("  weighted_crosstab()           time_series_stats()\n")
+cat("  calculate_design_effect()\n")
+
+cat("\nVisualization (visualization.R):\n")
+cat("  create_choropleth()    create_raster_map()    create_bar_standard()\n")
+cat("  create_bar_horizontal() create_bar_comparison() create_bar_stacked()\n")
+cat("  create_line_chart()    create_scatter_plot()   save_fraym_plot()\n")
+
+cat("\nfraymr API (spatial.R) — requires infraym_login():\n")
+cat("  fraym_login()                  list_place_groups()\n")
+cat("  download_place_group()         download_default_place_group()\n")
+cat("  download_country()             download_worldpop()\n")
+cat("  list_surveys()                 get_survey_url()\n")
+cat("  calc_zonal_stats()             fraym_spatial_help()\n")
+
 cat("\nReady to analyze!\n")
-cat("Type list_fraym_palettes() to see available color schemes.\n")
