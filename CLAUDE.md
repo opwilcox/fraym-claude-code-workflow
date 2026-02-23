@@ -85,7 +85,6 @@ source("../utils/source_all.R")
 
 | Script | Contents |
 |---|---|
-| `utils/explore.R` | Data package discovery: `fraym_explore_package()`, `fraym_read_codebook()`, `fraym_summarize_training()`, `fraym_check_paths()` |
 | `utils/survey.R` | Weighted survey stats: `national_weighted_stats()`, `subnational_weighted_stats()`, `weighted_crosstab()`, `time_series_stats()`, `calculate_design_effect()` |
 | `utils/visualization.R` | Charts and maps: `create_choropleth()`, `create_raster_map()`, `create_bar_*()`, `create_line_chart()`, `create_scatter_plot()`, `save_fraym_plot()` |
 | `utils/spatial.R` | fraymr API wrappers: `fraym_login()`, `list_place_groups()`, `download_place_group()`, `download_worldpop()`, `calc_zonal_stats()` |

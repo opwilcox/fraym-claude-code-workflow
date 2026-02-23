@@ -18,7 +18,6 @@ cat("Loading Fraym utility functions...\n")
 
 utils_scripts <- c(
   "fraym_palettes.R",
-  "explore.R",
   "survey.R",
   "visualization.R",
   "spatial.R"
@@ -40,12 +39,6 @@ cat("\nColor Palettes (fraym_palettes.R):\n")
 cat("  FRAYM_PRIMARY, FRAYM_NEUTRAL, FRAYM_EXTENDED (lists)\n")
 cat("  FRAYM_SEQUENTIAL, FRAYM_DIVERGENT, FRAYM_CHARTS (lists)\n")
 cat("  list_fraym_palettes()  get_fraym_color()  get_fraym_palette()\n")
-
-cat("\nData Exploration (explore.R):\n")
-cat("  fraym_explore_package()   - list and summarize data package contents\n")
-cat("  fraym_read_codebook()     - read codebook, print indicators by category\n")
-cat("  fraym_summarize_training()- verify training data and weight column\n")
-cat("  fraym_check_paths()       - file.exists() check on all configured paths\n")
 
 cat("\nSurvey Statistics (survey.R):\n")
 cat("  national_weighted_stats()     subnational_weighted_stats()\n")
